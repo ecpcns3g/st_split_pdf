@@ -9,7 +9,7 @@ import shutil
 
 # Set page config
 st.set_page_config(
-    page_title="PDF Splitter & Renamer",
+    page_title="PDF Dela & Döp om",
     page_icon="📄",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -24,15 +24,15 @@ output_dir.mkdir(exist_ok=True)
 
 # Define the function to process PDF
 def bearbeta_pdf(input_pdf, output_dir, id_pattern):
-    """Process a PDF file: split it and rename pages based on content.
+    """Bearbetar en PDF-fil: delar upp den och döper om sidorna baserat på innehåll.
 
     Args:
-        input_pdf (str or Path): Path to the input PDF file
-        output_dir (str or Path): Directory to save output PDF files
-        id_pattern (str): Regular expression to find the unique identifier
+        input_pdf (str or Path): Sökväg till indata-PDF-filen
+        output_dir (str or Path): Mapp för att spara utdata-PDF-filer
+        id_pattern (str): Reguljärt uttryck för att hitta unik identifierare
 
     Returns:
-        list: List of dictionaries containing page info and output filenames
+        list: Lista med dictionaries som innehåller sidinfo och utdatafilnamn
     """
     resultat = []
 
@@ -79,12 +79,12 @@ def bearbeta_pdf(input_pdf, output_dir, id_pattern):
 
     # Close original document
     doc.close()
-    st.success(f"All files have been saved to {zip_filnamn}")
+    st.success(f"Alla filer har sparats till {zip_filnamn}")
 
     return resultat
 
 # Main app
-st.title("PDF Dela & Byt Namn")
+st.title("PDF Dela & Döp om")
 st.markdown("""
 Denna app delar upp en flersidig PDF-fil i en fil per sida och byter namn på sidorna baserat på ID-värden (t.ex. LITTERA-nummer).
 """)
@@ -134,7 +134,7 @@ if uploaded_file is not None:
             resultat = bearbeta_pdf(input_path, output_dir, id_pattern)
             
             # Display results in a table
-            st.subheader("Bearbetar Resultat")
+            st.subheader("Bearbetningsresultat")
             
             # Create a DataFrame for better display
             import pandas as pd
