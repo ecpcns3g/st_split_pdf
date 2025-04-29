@@ -128,12 +128,12 @@ if uploaded_file is not None:
     
     # Process button
     if st.button("Dela upp PDF"):
-        with st.spinner("Bearbetar PDF med {total_sidor} sidor..."):
+        with st.spinner("Bearbetar PDF..."):
             # Process the PDF
             resultat = bearbeta_pdf(input_path, output_dir, id_pattern)
             
             # Display results in a table
-            st.subheader("Bearbetningsresultat")
+            st.subheader("Resultat")
             
             # Create a DataFrame for better display
             import pandas as pd
