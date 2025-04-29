@@ -40,7 +40,6 @@ def bearbeta_pdf(input_pdf, output_dir, id_pattern):
     doc = fitz.open(input_pdf)
     total_sidor = len(doc)
 
-    st.info(f"Bearbetar PDF med {total_sidor} sidor...")
 
     # Create zip file
     zip_filnamn = output_dir / f"{Path(input_pdf).stem}.zip"  # Name zip file based on input file
@@ -129,7 +128,7 @@ if uploaded_file is not None:
     
     # Process button
     if st.button("Dela upp PDF"):
-        with st.spinner("Bearbetar PDF..."):
+        with st.spinner("Bearbetar PDF med {total_sidor} sidor..."):
             # Process the PDF
             resultat = bearbeta_pdf(input_path, output_dir, id_pattern)
             
