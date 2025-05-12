@@ -93,6 +93,7 @@ st.sidebar.header("Inställningar")
 
 # Pattern selection
 pattern_options = {
+    "NUMMER": r'(?<![A-Za-z])EJ SKALA\s+([A-Z0-9-]+)',
     "LITTERA": r'LITTERA\s+([A-Z0-9]+)',
     "ID": r'ID\s*([A-Z0-9]+)',
     "REFERENS": r'REFERENS\s*(\d+)',
