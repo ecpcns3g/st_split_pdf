@@ -47,6 +47,7 @@ def bearbeta_pdf(input_pdf, output_dir, id_pattern):
 
         # Process each page, save as separate pdf files and add to zip file:
         for i in range(total_sidor):
+            print(f"Bearbetar sida {i+1} av {total_sidor}")
             sida_nummer = i + 1
 
             # Extract text from the page
@@ -60,11 +61,20 @@ def bearbeta_pdf(input_pdf, output_dir, id_pattern):
             ny_doc = fitz.open()
             ny_doc.insert_pdf(doc, from_page=i, to_page=i)
 
-            # Save the page as a new PDF
+            # Save the page as a new PDF with optimization
             output_filnamn = f"{identifierare}.pdf"
             output_sokvag = output_dir / output_filnamn
 
-            ny_doc.save(output_sokvag)
+            # Optimize PDF before saving
+            ny_doc.save(
+                output_sokvag,
+                garbage=4,  # Maximum garbage collection
+                deflate=True,  # Compress streams
+                clean=True,  # Clean redundant elements
+                pretty=False,  # Don't pretty-print
+                linear=True,  # Optimize for web viewing
+                ascii=False  # Use binary format
+            )
             ny_doc.close()
 
             # Add file to zip archive
